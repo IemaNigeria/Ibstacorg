@@ -1,0 +1,6 @@
+{
+  "name": "IBSTAC - International Board for Standards, Testing, Accreditation & Certification",
+  "description": "Official independent United States accreditation and certification council website under ISO/IEC 17011, providing directory lookups, application guides, and scope verification.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
