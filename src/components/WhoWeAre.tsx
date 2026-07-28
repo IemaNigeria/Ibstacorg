@@ -1,6 +1,7 @@
 import React from 'react';
 import { IBSTAC_OVERVIEW } from '../data/ibstacData';
 import { Shield, CheckCircle2, Award, FileText, Target, Eye, Compass, Lock, Scale, BarChart3, Users2 } from 'lucide-react';
+import whoWeAreCouncil from '../assets/images/who_we_are_council_1785248585127.jpg';
 
 export const WhoWeAre: React.FC = () => {
   return (
@@ -70,9 +71,9 @@ export const WhoWeAre: React.FC = () => {
         {/* Mission, Vision, and Origin Section */}
         <div className="bg-slate-50 border border-slate-200 rounded-sm p-8 lg:p-12 space-y-10 shadow-sm">
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            {/* Origin & Mandate */}
-            <div className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Origin & Mandate Copy */}
+            <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-widest">
                 <Compass className="w-4 h-4" /> About Us • Our Origin & Mandate
               </div>
@@ -87,32 +88,48 @@ export const WhoWeAre: React.FC = () => {
               </p>
             </div>
 
-            {/* Mission & Vision Cards */}
-            <div className="space-y-6">
-              
-              {/* Mission */}
-              <div className="bg-slate-900 text-white rounded-sm p-6 space-y-2 shadow-md border-l-4 border-blue-600">
-                <div className="flex items-center gap-2 text-blue-400 font-extrabold text-base uppercase tracking-wider">
-                  <Target className="w-5 h-5 text-blue-400" />
-                  Our Mission
-                </div>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  "{IBSTAC_OVERVIEW.aboutUs.mission}"
+            {/* Featured Image Card */}
+            <div className="lg:col-span-5 relative rounded-sm overflow-hidden border border-slate-300 shadow-md group">
+              <img 
+                src={whoWeAreCouncil} 
+                alt="IBSTAC Governance Council Committee"
+                referrerPolicy="no-referrer"
+                className="w-full h-64 lg:h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent p-4 flex flex-col justify-end">
+                <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block">Institutional Leadership</span>
+                <p className="text-xs font-bold text-white leading-tight mt-0.5">
+                  IBSTAC Executive Secretariat & Multi-Stakeholder Standards Committee
                 </p>
               </div>
-
-              {/* Vision */}
-              <div className="bg-slate-900 text-white rounded-sm p-6 space-y-2 shadow-md border-l-4 border-blue-400">
-                <div className="flex items-center gap-2 text-blue-300 font-extrabold text-base uppercase tracking-wider">
-                  <Eye className="w-5 h-5 text-blue-300" />
-                  Our Vision
-                </div>
-                <p className="text-slate-200 text-sm leading-relaxed">
-                  "{IBSTAC_OVERVIEW.aboutUs.vision}"
-                </p>
-              </div>
-
             </div>
+          </div>
+
+          {/* Mission & Vision Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+            
+            {/* Mission */}
+            <div className="bg-slate-900 text-white rounded-sm p-6 space-y-2 shadow-md border-l-4 border-blue-600">
+              <div className="flex items-center gap-2 text-blue-400 font-extrabold text-base uppercase tracking-wider">
+                <Target className="w-5 h-5 text-blue-400" />
+                Our Mission
+              </div>
+              <p className="text-slate-200 text-sm leading-relaxed">
+                "{IBSTAC_OVERVIEW.aboutUs.mission}"
+              </p>
+            </div>
+
+            {/* Vision */}
+            <div className="bg-slate-900 text-white rounded-sm p-6 space-y-2 shadow-md border-l-4 border-blue-400">
+              <div className="flex items-center gap-2 text-blue-300 font-extrabold text-base uppercase tracking-wider">
+                <Eye className="w-5 h-5 text-blue-300" />
+                Our Vision
+              </div>
+              <p className="text-slate-200 text-sm leading-relaxed">
+                "{IBSTAC_OVERVIEW.aboutUs.vision}"
+              </p>
+            </div>
+
           </div>
 
           {/* Core Values Grid */}

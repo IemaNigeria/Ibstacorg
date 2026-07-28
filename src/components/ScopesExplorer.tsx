@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
 import { ACCREDITATION_SCOPES } from '../data/ibstacData';
 import { ScopeCategory } from '../types';
-import { ShieldCheck, PackageCheck, FlaskConical, ClipboardCheck, UserCheck, ArrowRight, CheckCircle2, FileText, X, Download } from 'lucide-react';
+import { ShieldCheck, PackageCheck, FlaskConical, ClipboardCheck, UserCheck, ArrowRight, CheckCircle2, FileText, X, Download, Eye } from 'lucide-react';
+
+import scopeManagementSystems from '../assets/images/scope_management_systems_1785248598273.jpg';
+import scopePersonnel from '../assets/images/scope_personnel_1785248613954.jpg';
+import heroLab from '../assets/images/hero_lab_calibration_1785246836046.jpg';
+import heroInspection from '../assets/images/hero_inspection_audit_1785246848928.jpg';
+import heroSummit from '../assets/images/hero_global_summit_1785246860343.jpg';
+
+const SCOPE_IMAGE_MAP: Record<string, string> = {
+  'scope-1': scopeManagementSystems,
+  'scope-2': heroSummit,
+  'scope-3': heroLab,
+  'scope-4': heroInspection,
+  'scope-5': scopePersonnel
+};
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   ShieldCheck: <ShieldCheck className="w-6 h-6 text-blue-600" />,
@@ -37,64 +51,82 @@ export const ScopesExplorer: React.FC<ScopesExplorerProps> = ({ onSelectScopeFor
 
         {/* 5 Scopes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ACCREDITATION_SCOPES.map((scope) => (
-            <div 
-              key={scope.id}
-              className="bg-white border border-slate-200 hover:border-blue-500 rounded-sm p-6 transition-all shadow-xs flex flex-col justify-between group"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-sm bg-blue-50 border border-blue-100 group-hover:border-blue-300 transition-colors">
-                    {ICON_MAP[scope.iconName] || <ShieldCheck className="w-6 h-6 text-blue-600" />}
-                  </div>
-                  <span className="bg-blue-50 text-blue-700 border border-blue-100 text-[10px] font-black uppercase px-2.5 py-1 rounded-sm tracking-widest">
-                    {scope.isoStandard}
-                  </span>
-                </div>
-
+          {ACCREDITATION_SCOPES.map((scope) => {
+            const img = SCOPE_IMAGE_MAP[scope.id];
+            return (
+              <div 
+                key={scope.id}
+                className="bg-white border border-slate-200 hover:border-blue-500 rounded-sm overflow-hidden transition-all shadow-xs flex flex-col justify-between group"
+              >
                 <div>
-                  <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
-                    {scope.title}
-                  </h3>
-                  <p className="text-slate-600 text-xs mt-2 leading-relaxed">
-                    {scope.shortDesc}
-                  </p>
+                  {/* Featured Card Image Header */}
+                  {img && (
+                    <div className="relative h-40 overflow-hidden bg-slate-900">
+                      <img 
+                        src={img} 
+                        alt={scope.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                      <div className="absolute top-3 right-3">
+                        <span className="bg-slate-950/80 text-blue-400 border border-blue-500/30 text-[10px] font-black uppercase px-2.5 py-1 rounded-sm tracking-widest backdrop-blur-xs">
+                          {scope.isoStandard}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 rounded-sm bg-blue-50 border border-blue-100 group-hover:border-blue-300 transition-colors shrink-0">
+                        {ICON_MAP[scope.iconName] || <ShieldCheck className="w-5 h-5 text-blue-600" />}
+                      </div>
+                      <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight">
+                        {scope.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-slate-600 text-xs leading-relaxed">
+                      {scope.shortDesc}
+                    </p>
+
+                    {/* Key Technical Fields */}
+                    <div className="space-y-1.5 pt-2 border-t border-slate-100">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Key Sector Applications:</span>
+                      <ul className="space-y-1 text-xs text-slate-700">
+                        {scope.keyFields.slice(0, 3).map((field, i) => (
+                          <li key={i} className="flex items-center gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                            <span className="truncate">{field}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Key Technical Fields */}
-                <div className="space-y-1.5 pt-2 border-t border-slate-100">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Key Sector Applications:</span>
-                  <ul className="space-y-1 text-xs text-slate-700">
-                    {scope.keyFields.slice(0, 3).map((field, i) => (
-                      <li key={i} className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                        <span className="truncate">{field}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Scope Action Buttons */}
+                <div className="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+                  <button
+                    onClick={() => setSelectedScope(scope)}
+                    className="text-xs font-bold text-slate-700 hover:text-blue-600 flex items-center gap-1 transition-colors uppercase tracking-wider"
+                  >
+                    View Criteria
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  <button
+                    onClick={() => onSelectScopeForApply(scope.id)}
+                    className="bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-bold px-3 py-2 rounded-sm transition-all uppercase tracking-widest"
+                  >
+                    Apply Under Scope
+                  </button>
                 </div>
+
               </div>
-
-              {/* Scope Action Buttons */}
-              <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between gap-2">
-                <button
-                  onClick={() => setSelectedScope(scope)}
-                  className="text-xs font-bold text-slate-700 hover:text-blue-600 flex items-center gap-1 transition-colors uppercase tracking-wider"
-                >
-                  View Criteria
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-
-                <button
-                  onClick={() => onSelectScopeForApply(scope.id)}
-                  className="bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-bold px-3 py-2 rounded-sm transition-all uppercase tracking-widest"
-                >
-                  Apply Under Scope
-                </button>
-              </div>
-
-            </div>
-          ))}
+            );
+          })}
 
           {/* Standards Compliance Card */}
           <div className="bg-slate-900 text-white border border-slate-800 rounded-sm p-6 flex flex-col justify-between text-center space-y-4 shadow-md">
