@@ -261,6 +261,30 @@ export const GOVERNANCE_STRUCTURE: GovernanceBody[] = [
 
 export const SAMPLE_ACCREDITED_CABS: AccreditedCAB[] = [
   {
+    id: "iema",
+    cabName: "IEMA STANDARDS LIMITED",
+    registrationNumber: "EGAC-CAB-IEMA-088",
+    scopeCategory: "Management Systems Certification Bodies",
+    primaryStandard: "ISO/IEC 17021-1 & ISO Standards",
+    country: "Egypt & International",
+    cityState: "Cairo / Global Scope",
+    accreditationStatus: "Active",
+    initialAccreditationDate: "2022-04-15",
+    expiryDate: "2027-04-14",
+    technicalScopes: [
+      "ISO 9001:2015 (Quality Management Systems)",
+      "ISO 14001:2015 (Environmental Management Systems)",
+      "ISO 45001:2018 (Occupational Health & Safety Management)",
+      "ISO 22000:2018 (Food Safety Management Systems)",
+      "ISO 27001:2022 (Information Security Management Systems)"
+    ],
+    certificateId: "EGAC-IAF-MLA-IEMA-2026",
+    contactEmail: "info@iemacert.com",
+    websiteUrl: "https://iemacert.com/",
+    accreditingBody: "Egyptian Accreditation Council (EGAC)",
+    recognitionDetails: "Accredited by the Egyptian Accreditation Council (EGAC), a signatory to both the International Accreditation Forum (IAF) Multilateral Recognition Arrangement (MLA) and the International Laboratory Accreditation Cooperation (ILAC) Mutual Recognition Arrangement (MRA). Certificates and reports issued within accredited scopes are globally recognized."
+  },
+  {
     id: "cab-001",
     cabName: "Apex Quality Certification LLC",
     registrationNumber: "CAB-MS-2024-001",

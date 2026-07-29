@@ -34,6 +34,9 @@ export interface AccreditedCAB {
   certificateId: string;
   contactEmail: string;
   cityState: string;
+  websiteUrl?: string;
+  accreditingBody?: string;
+  recognitionDetails?: string;
 }
 
 export interface GovernanceBody {
