@@ -58,7 +58,7 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <strong className="text-slate-900 block font-bold">Executive Secretariat</strong>
                   <span className="text-slate-600">International Board for Standards, Testing, Accreditation & Certification</span>
-                  <span className="block text-slate-500 mt-1">International Bureau of Standard Accreditation</span>
+                  <span className="block text-slate-500 mt-1">International Bureau For Standard Accreditation</span>
                 </div>
               </div>
 

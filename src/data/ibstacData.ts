@@ -3,13 +3,13 @@ import { ScopeCategory, AccreditedCAB, GovernanceBody, NewsArticle, StandardRefe
 export const IBSTAC_OVERVIEW = {
   organizationName: "International Board for Standards, Testing, Accreditation & Certification",
   acronym: "IBSTAC",
-  headquarters: "International Bureau of Standard Accreditation",
+  headquarters: "International Bureau For Standard Accreditation",
   subtitle: "An Independent Accreditation & Certification Authority",
   tagline: "The Audit Behind the Audit — Confirming Competence, Impartiality & Consistency",
   
   whoWeAre: {
     title: "Who We Are",
-    p1: "IBSTAC operates under the International Bureau of Standard Accreditation. We evaluate and accredit the certification bodies, testing and calibration laboratories, inspection bodies, and personnel certification schemes that industries and regulators rely on for assurance — confirming that the organizations doing the certifying are themselves competent, impartial, and consistent.",
+    p1: "IBSTAC operates under the International Bureau For Standard Accreditation. We evaluate and accredit the certification bodies, testing and calibration laboratories, inspection bodies, and personnel certification schemes that industries and regulators rely on for assurance — confirming that the organizations doing the certifying are themselves competent, impartial, and consistent.",
     p2: "We do not certify products or manage systems directly. Our role sits one level above that: we accredit the bodies that do, giving industry, regulators, and the public confidence that a certificate, test report, or inspection result actually means what it claims to mean.",
     p3: "In practical terms, IBSTAC functions as the audit behind the audit — the body that confirms a certifier is qualified to certify, before that certifier ever puts its stamp on someone else's work."
   },

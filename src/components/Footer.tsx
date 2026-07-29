@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavPage } from '../types';
 import { ShieldCheck, Award, Building2, Globe2, ChevronRight, CheckCircle2 } from 'lucide-react';
-import ibstacSeal from '../assets/images/ibstac_seal_logo_1785245394222.jpg';
+import { IBSTACLogo } from './IBSTACLogo';
 
 interface FooterProps {
   onNavigate: (page: NavPage) => void;
@@ -16,16 +16,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           
           <div className="flex items-center gap-4">
-            <img 
-              src={ibstacSeal} 
-              alt="IBSTAC Crest" 
-              className="w-12 h-12 rounded-full border-2 border-blue-600 shadow-xs"
-              referrerPolicy="no-referrer"
-            />
+            <IBSTACLogo showSubtitle={false} size="md" variant="dark" />
             <div>
               <h4 className="font-extrabold text-white text-base tracking-tight">IBSTAC</h4>
               <p className="text-slate-400 text-xs">
-                International Board for Standards, Testing, Accreditation & Certification
+                International Bureau For Standard Accreditation
               </p>
             </div>
           </div>
@@ -52,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             IBSTAC is an independent accreditation authority operating under ISO/IEC 17011. We evaluate and accredit management systems certification bodies, product certification bodies, testing & calibration laboratories, inspection bodies, and personnel credentialing schemes.
           </p>
           <div className="pt-2 text-[11px] text-blue-400 font-mono font-semibold">
-            "The audit behind the audit" • International Bureau of Standard Accreditation
+            "The audit behind the audit" • International Bureau For Standard Accreditation
           </div>
         </div>
 

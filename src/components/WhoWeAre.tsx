@@ -17,7 +17,7 @@ export const WhoWeAre: React.FC = () => {
             An Independent Accreditation & Certification Authority
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
-            International Bureau of Standard Accreditation • Operating strictly under ISO/IEC 17011 principles
+            International Bureau For Standard Accreditation • Operating strictly under ISO/IEC 17011 principles
           </p>
         </div>
 

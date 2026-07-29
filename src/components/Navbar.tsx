@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavPage } from '../types';
 import { Shield, Search, CheckCircle2, Menu, X, FileText, Globe, Building2, HelpCircle } from 'lucide-react';
-import ibstacSeal from '../assets/images/ibstac_seal_logo_1785245394222.jpg';
+import { IBSTACLogo } from './IBSTACLogo';
 
 interface NavbarProps {
   currentPage: NavPage;
@@ -24,7 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5 font-bold uppercase tracking-widest text-[10px] text-blue-400">
-              <Building2 className="w-3.5 h-3.5" /> International Bureau of Standard Accreditation
+              <Building2 className="w-3.5 h-3.5" /> International Bureau For Standard Accreditation
             </span>
             <span className="hidden md:inline text-slate-700">|</span>
             <span className="hidden md:inline text-slate-300 text-[11px]">
@@ -46,27 +46,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
-        {/* Brand Logo & Seal */}
+        {/* Brand Logo - First IBSTAC logo (retains full subtext) */}
         <div 
           onClick={() => handleNavClick('home')}
-          className="flex items-center gap-2.5 cursor-pointer group"
+          className="flex items-center gap-3 cursor-pointer group py-1"
         >
-          <div className="w-10 h-10 bg-slate-900 flex items-center justify-center rounded-sm shrink-0 shadow-sm">
-            <span className="text-white font-black text-xl tracking-tighter">IB</span>
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="font-black text-xl sm:text-2xl tracking-tighter leading-none text-slate-900 group-hover:text-blue-600 transition-colors">
-                IBSTAC
-              </span>
-              <span className="bg-blue-50 text-blue-700 border border-blue-100 text-[9px] font-extrabold uppercase tracking-widest px-1.5 py-0.5 rounded-sm">
-                Accreditation Bureau
-              </span>
-            </div>
-            <span className="text-[10px] uppercase tracking-[0.18em] font-bold text-slate-500 hidden sm:block mt-0.5">
-              International Bureau of Standard Accreditation
-            </span>
-          </div>
+          <IBSTACLogo showSubtitle={true} size="md" />
         </div>
 
         {/* Desktop Navigation Links */}

@@ -24,6 +24,7 @@ import heroBg from '../assets/images/ibstac_hero_bg_1785245410504.jpg';
 import heroLab from '../assets/images/hero_lab_calibration_1785246836046.jpg';
 import heroInspection from '../assets/images/hero_inspection_audit_1785246848928.jpg';
 import heroSummit from '../assets/images/hero_global_summit_1785246860343.jpg';
+import { IBSTACLogo } from './IBSTACLogo';
 
 interface HeroProps {
   onNavigate: (page: NavPage) => void;
@@ -294,9 +295,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry }) => {
             <div className="space-y-4">
               <div className="pb-3 border-b border-slate-200 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-slate-900 text-white font-black text-sm flex items-center justify-center rounded-sm">
-                    IB
-                  </div>
+                  <IBSTACLogo showSubtitle={false} size="sm" />
                   <div>
                     <h3 className="font-extrabold text-base text-slate-900 uppercase tracking-tight">Public Registry Directory Search</h3>
                     <p className="text-xs text-slate-500">
@@ -410,7 +409,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry }) => {
               <p className="text-xl font-extrabold text-white">Serving Conformity Assessment Bodies Worldwide</p>
             </div>
             <div className="text-[10px] uppercase font-bold text-slate-400 sm:text-right">
-              International Bureau of Standard Accreditation • Global Outreach
+              International Bureau For Standard Accreditation • Global Outreach
             </div>
           </div>
 
