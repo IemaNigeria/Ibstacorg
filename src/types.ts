@@ -4,7 +4,6 @@ export type NavPage =
   | 'scopes'
   | 'governance'
   | 'register'
-  | 'verify'
   | 'process'
   | 'ai-advisor'
   | 'news'
@@ -62,18 +61,4 @@ export interface StandardReference {
   title: string;
   applicability: string;
   summary: string;
-}
-
-export interface VerificationResult {
-  certificateId: string;
-  cabName: string;
-  cabRegistrationNo: string;
-  scope: string;
-  issuedTo: string;
-  status: string;
-  issueDate: string;
-  expiryDate: string;
-  accreditationScope: string;
-  accreditingBody: string;
-  verifiedOn: string;
 }

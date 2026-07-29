@@ -6,27 +6,16 @@ import { WhoWeAre } from './components/WhoWeAre';
 import { ScopesExplorer } from './components/ScopesExplorer';
 import { GovernanceSection } from './components/GovernanceSection';
 import { PublicRegister } from './components/PublicRegister';
-import { CertificateVerification } from './components/CertificateVerification';
 import { ApplicationProcess } from './components/ApplicationProcess';
 import { AIComplianceAdvisor } from './components/AIComplianceAdvisor';
 import { NewsSection } from './components/NewsSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { X, ShieldCheck } from 'lucide-react';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<NavPage>('home');
   const [registerSearchQuery, setRegisterSearchQuery] = useState('');
   const [selectedApplyScope, setSelectedApplyScope] = useState('management-systems');
-  const [quickVerifyOpen, setQuickVerifyOpen] = useState(false);
-  const [quickVerifyId, setQuickVerifyId] = useState('CERT-9001-88421');
-
-  // Helper to open verification for a specific certificate ID
-  const handleOpenVerifyForId = (certId: string) => {
-    setQuickVerifyId(certId);
-    setCurrentPage('verify');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   // Helper when selecting a scope from ScopesExplorer to jump to Apply
   const handleSelectScopeForApply = (scopeId: string) => {
@@ -42,10 +31,6 @@ export default function App() {
       <Navbar 
         currentPage={currentPage}
         onNavigate={setCurrentPage}
-        onOpenQuickVerify={() => {
-          setCurrentPage('verify');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
       />
 
       {/* Main Page Render based on currentPage */}
@@ -55,16 +40,11 @@ export default function App() {
             <Hero 
               onNavigate={setCurrentPage}
               onSearchRegistry={(q) => setRegisterSearchQuery(q)}
-              onOpenQuickVerify={() => {
-                setCurrentPage('verify');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
             />
             <WhoWeAre />
             <ScopesExplorer onSelectScopeForApply={handleSelectScopeForApply} />
             <PublicRegister 
               initialSearchQuery={registerSearchQuery}
-              onVerifyCertId={handleOpenVerifyForId}
             />
             <GovernanceSection />
             <ApplicationProcess 
@@ -99,14 +79,7 @@ export default function App() {
           <div className="animate-fadeIn">
             <PublicRegister 
               initialSearchQuery={registerSearchQuery}
-              onVerifyCertId={handleOpenVerifyForId}
             />
-          </div>
-        )}
-
-        {currentPage === 'verify' && (
-          <div className="animate-fadeIn">
-            <CertificateVerification prefilledCertId={quickVerifyId} />
           </div>
         )}
 
@@ -141,10 +114,6 @@ export default function App() {
       {/* Footer */}
       <Footer 
         onNavigate={setCurrentPage}
-        onOpenQuickVerify={() => {
-          setCurrentPage('verify');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
       />
 
     </div>

@@ -28,7 +28,6 @@ import heroSummit from '../assets/images/hero_global_summit_1785246860343.jpg';
 interface HeroProps {
   onNavigate: (page: NavPage) => void;
   onSearchRegistry: (query: string) => void;
-  onOpenQuickVerify: () => void;
 }
 
 interface SlideData {
@@ -47,7 +46,7 @@ interface SlideData {
   isoStandard: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry, onOpenQuickVerify }) => {
+export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -80,8 +79,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry, onOpen
       tagline: "Laboratory Accreditation Standard",
       primaryCtaText: "View Laboratory Scope",
       primaryCtaAction: () => onNavigate('scopes'),
-      secondaryCtaText: "Verify Certificate",
-      secondaryCtaAction: onOpenQuickVerify,
+      secondaryCtaText: "Public Directory",
+      secondaryCtaAction: () => onNavigate('register'),
       isoStandard: "ISO/IEC 17025 • Testing & Calibration"
     },
     {
@@ -333,18 +332,6 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry, onOpen
                 </div>
               </form>
             </div>
-
-            {/* Verification Bar */}
-            <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
-              <span className="text-slate-600 font-medium">Quick Certificate Audit Verification:</span>
-              <button
-                onClick={onOpenQuickVerify}
-                className="bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-bold text-[11px] uppercase tracking-wider px-4 py-2 rounded-sm flex items-center gap-1.5 transition-colors"
-              >
-                <CheckCircle className="w-3.5 h-3.5 text-blue-600" />
-                Launch Certificate Verifier
-              </button>
-            </div>
           </div>
 
           {/* Governing Oversight Summary */}
@@ -386,7 +373,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry, onOpen
               <span className="flex items-center gap-1.5 text-blue-400 font-semibold">
                 <Award className="w-3.5 h-3.5" /> ISO 17011 Compliant
               </span>
-              <span>United States Secretariat</span>
+              <span>International Secretariat</span>
             </div>
           </div>
 
@@ -400,7 +387,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry, onOpen
           </div>
           <div className="flex items-center gap-2 bg-white p-3 border border-slate-200 rounded-sm shadow-2xs">
             <Landmark className="w-4 h-4 text-blue-600 shrink-0" />
-            <span>Multi-Stakeholder Council</span>
+            <span>Multi-Stakeholder Bureau</span>
           </div>
           <div className="flex items-center gap-2 bg-white p-3 border border-slate-200 rounded-sm shadow-2xs">
             <FileCheck className="w-4 h-4 text-blue-600 shrink-0" />
@@ -423,7 +410,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry, onOpen
               <p className="text-xl font-extrabold text-white">Serving Conformity Assessment Bodies Worldwide</p>
             </div>
             <div className="text-[10px] uppercase font-bold text-slate-400 sm:text-right">
-              Based in United States • Global Regulatory Outreach
+              International Bureau of Standard Accreditation • Global Outreach
             </div>
           </div>
 

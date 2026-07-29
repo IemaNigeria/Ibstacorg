@@ -5,10 +5,9 @@ import ibstacSeal from '../assets/images/ibstac_seal_logo_1785245394222.jpg';
 
 interface FooterProps {
   onNavigate: (page: NavPage) => void;
-  onOpenQuickVerify: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuickVerify }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 text-xs font-sans">
       
@@ -33,16 +32,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuickVerify })
 
           <div className="flex flex-wrap items-center gap-4 text-xs">
             <button
-              onClick={onOpenQuickVerify}
-              className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold uppercase tracking-wider text-[11px] px-4 py-2 rounded-sm shadow-xs transition-colors flex items-center gap-1.5"
-            >
-              <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" />
-              Certificate Verification Portal
-            </button>
-
-            <button
               onClick={() => onNavigate('process')}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-[11px] uppercase tracking-wider px-4 py-2 rounded-sm shadow-xs transition-colors"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-sm shadow-xs transition-colors"
             >
               Apply for Accreditation
             </button>
@@ -61,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuickVerify })
             IBSTAC is an independent accreditation authority operating under ISO/IEC 17011. We evaluate and accredit management systems certification bodies, product certification bodies, testing & calibration laboratories, inspection bodies, and personnel credentialing schemes.
           </p>
           <div className="pt-2 text-[11px] text-blue-400 font-mono font-semibold">
-            "The audit behind the audit" • United States
+            "The audit behind the audit" • International Bureau of Standard Accreditation
           </div>
         </div>
 
@@ -104,11 +95,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuickVerify })
             <li>
               <button onClick={() => onNavigate('register')} className="hover:text-white transition-colors">
                 Public Directory of CABs
-              </button>
-            </li>
-            <li>
-              <button onClick={onOpenQuickVerify} className="hover:text-white transition-colors text-blue-400">
-                Verify Certificate ID
               </button>
             </li>
             <li>

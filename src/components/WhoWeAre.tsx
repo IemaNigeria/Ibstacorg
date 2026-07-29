@@ -14,10 +14,10 @@ export const WhoWeAre: React.FC = () => {
             <Shield className="w-3.5 h-3.5 text-blue-600" /> Company Overview & Mandate
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            An Independent Accreditation & Certification Council
+            An Independent Accreditation & Certification Authority
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
-            Headquartered in the United States • Operating strictly under ISO/IEC 17011 principles
+            International Bureau of Standard Accreditation • Operating strictly under ISO/IEC 17011 principles
           </p>
         </div>
 

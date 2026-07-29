@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, CheckCircle2, Calculator, Send, ArrowRight, ShieldCheck, Clock, DollarSign, Building2, HelpCircle } from 'lucide-react';
+import { FileText, CheckCircle2, Send, ArrowRight, ShieldCheck, Building2, HelpCircle } from 'lucide-react';
 
 interface ApplicationProcessProps {
   initialScopeId?: string;
@@ -7,11 +7,6 @@ interface ApplicationProcessProps {
 }
 
 export const ApplicationProcess: React.FC<ApplicationProcessProps> = ({ initialScopeId = 'management-systems', onOpenAiAdvisor }) => {
-  // Calculator state
-  const [calcScope, setCalcScope] = useState(initialScopeId);
-  const [calcSites, setCalcSites] = useState(1);
-  const [calcAssessors, setCalcAssessors] = useState(2);
-
   // Application Inquiry Form state
   const [formData, setFormData] = useState({
     organizationName: '',
@@ -25,23 +20,6 @@ export const ApplicationProcess: React.FC<ApplicationProcessProps> = ({ initialS
     notes: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
-
-  // Fee calculation helper
-  const calculateEstimate = () => {
-    let baseFee = 3500;
-    if (calcScope === 'testing-laboratories') baseFee = 4200;
-    if (calcScope === 'inspection-bodies') baseFee = 3800;
-    if (calcScope === 'product-certification') baseFee = 4500;
-    if (calcScope === 'personnel-certification') baseFee = 3900;
-
-    const siteCost = (calcSites - 1) * 1200;
-    const totalEstimate = baseFee + siteCost;
-    const estimatedWeeks = 8 + (calcSites * 2);
-
-    return { totalEstimate, estimatedWeeks };
-  };
-
-  const { totalEstimate, estimatedWeeks } = calculateEstimate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,111 +118,25 @@ export const ApplicationProcess: React.FC<ApplicationProcessProps> = ({ initialS
 
         </div>
 
-        {/* Interactive Fee & Timeline Estimator */}
-        <div className="bg-white border border-slate-200 rounded-sm p-6 sm:p-8 space-y-6 shadow-xs">
+        {/* Official Application Inquiry Form */}
+        <div className="bg-white border border-slate-200 rounded-sm p-6 sm:p-10 space-y-6 shadow-xs">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 text-blue-600 font-bold text-xs uppercase tracking-wider">
-                <Calculator className="w-4 h-4" /> Assessment Planning Tool
-              </div>
               <h3 className="text-2xl font-extrabold text-slate-900">
-                Interactive Fee & Duration Estimator
+                Preliminary Application & Scope Inquiry
               </h3>
+              <p className="text-xs text-slate-600">
+                Submit your organization's details to receive formal ISO/IEC 17011 application forms and assessor scheduling options.
+              </p>
             </div>
 
             <button
               onClick={onOpenAiAdvisor}
-              className="bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-sm flex items-center gap-1.5 transition-colors"
+              className="bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-sm flex items-center gap-1.5 transition-colors shrink-0"
             >
               <HelpCircle className="w-4 h-4 text-blue-600" />
               Ask AI Scope Advisor
             </button>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* Inputs */}
-            <div className="lg:col-span-7 space-y-4 text-xs">
-              <div>
-                <label className="block text-slate-700 font-bold uppercase tracking-wider text-[11px] mb-1">Target Accreditation Scope:</label>
-                <select
-                  value={calcScope}
-                  onChange={(e) => setCalcScope(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-300 text-slate-900 p-2.5 rounded-sm focus:border-blue-600 text-xs"
-                >
-                  <option value="management-systems">Management Systems Certification Bodies (ISO/IEC 17021-1)</option>
-                  <option value="product-certification">Product Certification Bodies (ISO/IEC 17065)</option>
-                  <option value="testing-laboratories">Testing & Calibration Laboratories (ISO/IEC 17025)</option>
-                  <option value="inspection-bodies">Inspection Bodies (ISO/IEC 17020)</option>
-                  <option value="personnel-certification">Personnel Certification Bodies (ISO/IEC 17024)</option>
-                </select>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-slate-700 font-bold uppercase tracking-wider text-[11px] mb-1">Number of Facilities / Sites:</label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="20"
-                    value={calcSites}
-                    onChange={(e) => setCalcSites(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-full bg-slate-50 border border-slate-300 text-slate-900 p-2.5 rounded-sm focus:border-blue-600 text-xs"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-slate-700 font-bold uppercase tracking-wider text-[11px] mb-1">Assessor Team Size:</label>
-                  <select
-                    value={calcAssessors}
-                    onChange={(e) => setCalcAssessors(parseInt(e.target.value))}
-                    className="w-full bg-slate-50 border border-slate-300 text-slate-900 p-2.5 rounded-sm focus:border-blue-600 text-xs"
-                  >
-                    <option value={2}>2 Technical Assessors</option>
-                    <option value={3}>3 Technical Assessors (Multi-sector)</option>
-                    <option value={4}>4 Technical Assessors (Complex Scope)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            {/* Estimate Results Box */}
-            <div className="lg:col-span-5 bg-slate-50 border border-slate-200 p-6 rounded-sm space-y-4 text-center">
-              <span className="text-[10px] text-blue-600 font-bold uppercase tracking-widest block">Estimated Initial Assessment Investment</span>
-              
-              <div className="space-y-1">
-                <span className="text-3xl font-extrabold text-slate-900 block">
-                  ${totalEstimate.toLocaleString()} <span className="text-xs text-slate-500 font-sans font-normal">USD</span>
-                </span>
-                <span className="text-xs text-slate-500 block">
-                  Includes document review, preliminary & on-site audit
-                </span>
-              </div>
-
-              <div className="pt-3 border-t border-slate-200 flex items-center justify-around text-xs text-slate-700">
-                <div>
-                  <Clock className="w-4 h-4 text-blue-600 mx-auto mb-1" />
-                  <span>Timeline: <strong className="text-slate-900">~{estimatedWeeks} Weeks</strong></span>
-                </div>
-                <div>
-                  <ShieldCheck className="w-4 h-4 text-blue-600 mx-auto mb-1" />
-                  <span>Cycle: <strong className="text-slate-900">3-Year Renewal</strong></span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Official Application Inquiry Form */}
-        <div className="bg-white border border-slate-200 rounded-sm p-6 sm:p-10 space-y-6 shadow-xs">
-          <div className="space-y-1 border-b border-slate-200 pb-4">
-            <h3 className="text-2xl font-extrabold text-slate-900">
-              Preliminary Application & Scope Inquiry
-            </h3>
-            <p className="text-xs text-slate-600">
-              Submit your organization's details to receive formal ISO/IEC 17011 application forms and assessor scheduling options.
-            </p>
           </div>
 
           {!formSubmitted ? (

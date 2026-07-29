@@ -45,7 +45,7 @@ export const ContactSection: React.FC = () => {
           <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-sm p-6 sm:p-8 space-y-6 shadow-xs">
             <div className="border-b border-slate-200 pb-4">
               <span className="text-blue-600 text-[10px] font-bold uppercase tracking-widest block">
-                Council Headquarters
+                Bureau Headquarters
               </span>
               <h3 className="text-2xl font-extrabold text-slate-900">
                 IBSTAC Secretariat
@@ -56,9 +56,9 @@ export const ContactSection: React.FC = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-slate-900 block font-bold">United States Executive Secretariat</strong>
+                  <strong className="text-slate-900 block font-bold">Executive Secretariat</strong>
                   <span className="text-slate-600">International Board for Standards, Testing, Accreditation & Certification</span>
-                  <span className="block text-slate-500 mt-1">Washington, D.C. Metropolitan Area, United States</span>
+                  <span className="block text-slate-500 mt-1">International Bureau of Standard Accreditation</span>
                 </div>
               </div>
 

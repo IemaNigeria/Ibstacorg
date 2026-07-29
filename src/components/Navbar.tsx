@@ -6,10 +6,9 @@ import ibstacSeal from '../assets/images/ibstac_seal_logo_1785245394222.jpg';
 interface NavbarProps {
   currentPage: NavPage;
   onNavigate: (page: NavPage) => void;
-  onOpenQuickVerify: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQuickVerify }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavClick = (page: NavPage) => {
@@ -25,7 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5 font-bold uppercase tracking-widest text-[10px] text-blue-400">
-              <Building2 className="w-3.5 h-3.5" /> United States Accreditation Council
+              <Building2 className="w-3.5 h-3.5" /> International Bureau of Standard Accreditation
             </span>
             <span className="hidden md:inline text-slate-700">|</span>
             <span className="hidden md:inline text-slate-300 text-[11px]">
@@ -35,18 +34,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
 
           <div className="flex items-center gap-4 text-[11px] font-semibold">
             <button
-              onClick={onOpenQuickVerify}
-              className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-bold uppercase tracking-wider text-[10px] transition-colors"
-            >
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              Verify Certificate / CAB Record
-            </button>
-            <span className="text-slate-700">|</span>
-            <button
               onClick={() => handleNavClick('ai-advisor')}
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
             >
-              <HelpCircle className="w-3.5 h-3.5" />
+              <HelpCircle className="w-3.5 h-3.5 text-blue-400" />
               AI Compliance Assistant
             </button>
           </div>
@@ -69,11 +60,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                 IBSTAC
               </span>
               <span className="bg-blue-50 text-blue-700 border border-blue-100 text-[9px] font-extrabold uppercase tracking-widest px-1.5 py-0.5 rounded-sm">
-                US Council
+                Accreditation Bureau
               </span>
             </div>
             <span className="text-[10px] uppercase tracking-[0.18em] font-bold text-slate-500 hidden sm:block mt-0.5">
-              International Standards Board
+              International Bureau of Standard Accreditation
             </span>
           </div>
         </div>
@@ -204,12 +195,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
             className="block w-full text-left px-3 py-2 rounded text-slate-200 hover:bg-slate-900"
           >
             Directory of Accredited CABs
-          </button>
-          <button
-            onClick={() => handleNavClick('verify')}
-            className="block w-full text-left px-3 py-2 rounded text-emerald-400 hover:bg-slate-900"
-          >
-            Verify Certificate / Report
           </button>
           <button
             onClick={() => handleNavClick('process')}

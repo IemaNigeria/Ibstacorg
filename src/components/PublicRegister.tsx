@@ -5,10 +5,9 @@ import { Search, Filter, ShieldCheck, CheckCircle2, AlertCircle, Calendar, MapPi
 
 interface PublicRegisterProps {
   initialSearchQuery?: string;
-  onVerifyCertId: (certId: string) => void;
 }
 
-export const PublicRegister: React.FC<PublicRegisterProps> = ({ initialSearchQuery = '', onVerifyCertId }) => {
+export const PublicRegister: React.FC<PublicRegisterProps> = ({ initialSearchQuery = '' }) => {
   const [searchTerm, setSearchTerm] = useState(initialSearchQuery);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedStatus, setSelectedStatus] = useState<string>('All');
@@ -173,20 +172,13 @@ export const PublicRegister: React.FC<PublicRegisterProps> = ({ initialSearchQue
               </div>
 
               {/* Actions */}
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2">
                 <button
                   onClick={() => setSelectedCab(cab)}
                   className="text-xs font-bold text-slate-800 hover:text-blue-600 flex items-center gap-1 uppercase tracking-wider"
                 >
                   View Full Record
                   <ExternalLink className="w-3.5 h-3.5" />
-                </button>
-
-                <button
-                  onClick={() => onVerifyCertId(cab.certificateId)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold px-2.5 py-1.5 rounded-sm transition-colors uppercase tracking-widest"
-                >
-                  Verify Certificate
                 </button>
               </div>
 
@@ -279,20 +271,10 @@ export const PublicRegister: React.FC<PublicRegisterProps> = ({ initialSearchQue
                 </ul>
               </div>
 
-              <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
-                <button
-                  onClick={() => {
-                    const certId = selectedCab.certificateId;
-                    setSelectedCab(null);
-                    onVerifyCertId(certId);
-                  }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-sm shadow-xs"
-                >
-                  Verify Certificate Authenticity
-                </button>
+              <div className="pt-4 border-t border-slate-200 flex items-center justify-end">
                 <button
                   onClick={() => setSelectedCab(null)}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-sm"
+                  className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-sm"
                 >
                   Close Record
                 </button>
