@@ -28,6 +28,9 @@ export const IBSTACLogo: React.FC<IBSTACLogoProps> = ({
           alt="IBSTAC - International Bureau For Standard Accreditation"
           referrerPolicy="no-referrer"
           className={`${heightClasses[size]} w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] mix-blend-multiply`}
+          style={{
+            filter: 'contrast(200%) brightness(80%) drop-shadow(0.6px 0 0 #000000) drop-shadow(-0.6px 0 0 #000000) drop-shadow(0 0.6px 0 #000000) drop-shadow(0 -0.6px 0 #000000) drop-shadow(0.3px 0.3px 0 #000000)',
+          }}
         />
       </div>
     </div>
