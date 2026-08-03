@@ -1,5 +1,6 @@
 import React from 'react';
-import ibstacLogo from '../assets/images/ibstac_official_clean_logo_1785763448629.jpg';
+import ibstacLogoBlack from '../assets/images/ibstac_logo_black.png';
+import ibstacLogoWhite from '../assets/images/ibstac_logo_white.png';
 
 interface IBSTACLogoProps {
   className?: string;
@@ -14,6 +15,7 @@ export const IBSTACLogo: React.FC<IBSTACLogoProps> = ({
   size = 'md',
 }) => {
   const isDark = variant === 'dark';
+  const logoSrc = isDark ? ibstacLogoWhite : ibstacLogoBlack;
 
   const heightClasses = {
     sm: 'h-10 sm:h-12',
@@ -23,21 +25,12 @@ export const IBSTACLogo: React.FC<IBSTACLogoProps> = ({
 
   return (
     <div className={`inline-flex items-center group ${className}`}>
-      <div className="relative flex items-center justify-center transition-all duration-300">
-        <img
-          src={ibstacLogo}
-          alt="IBSTAC - International Bureau For Standard Accreditation"
-          referrerPolicy="no-referrer"
-          className={`${heightClasses[size]} w-auto object-contain transition-transform duration-300 group-hover:scale-[1.01] ${
-            isDark ? 'mix-blend-screen' : 'mix-blend-multiply'
-          }`}
-          style={{
-            filter: isDark
-              ? 'invert(1) contrast(140%) brightness(110%)'
-              : 'contrast(135%) brightness(98%)',
-          }}
-        />
-      </div>
+      <img
+        src={logoSrc}
+        alt="IBSTAC - International Bureau For Standard Accreditation"
+        referrerPolicy="no-referrer"
+        className={`${heightClasses[size]} w-auto object-contain transition-transform duration-300 group-hover:scale-[1.01]`}
+      />
     </div>
   );
 };
