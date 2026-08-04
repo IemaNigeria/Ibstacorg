@@ -1,6 +1,5 @@
 import React from 'react';
-import ibstacLogoBlack from '../assets/images/ibstac_logo_black.png';
-import ibstacLogoWhite from '../assets/images/ibstac_logo_white.png';
+import ibstacLogoVector from '../assets/images/ibstac_logo_vector.svg';
 
 interface IBSTACLogoProps {
   className?: string;
@@ -15,22 +14,23 @@ export const IBSTACLogo: React.FC<IBSTACLogoProps> = ({
   size = 'md',
 }) => {
   const isDark = variant === 'dark';
-  const logoSrc = isDark ? ibstacLogoWhite : ibstacLogoBlack;
 
   const heightClasses = {
-    sm: 'h-10 sm:h-12',
-    md: 'h-14 sm:h-18',
-    lg: 'h-20 sm:h-28',
+    sm: 'h-9 sm:h-11',
+    md: 'h-12 sm:h-16',
+    lg: 'h-18 sm:h-24',
   };
 
   return (
     <div className={`inline-flex items-center group ${className}`}>
       <img
-        src={logoSrc}
+        src={ibstacLogoVector}
         alt="IBSTAC - International Bureau For Standard Accreditation"
         referrerPolicy="no-referrer"
         className={`${heightClasses[size]} w-auto object-contain transition-transform duration-300 group-hover:scale-[1.01]`}
+        style={isDark ? { filter: 'brightness(0) invert(1)' } : undefined}
       />
     </div>
   );
 };
+
