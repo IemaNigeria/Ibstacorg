@@ -4,6 +4,7 @@ export type NavPage =
   | 'scopes'
   | 'governance'
   | 'register'
+  | 'verify'
   | 'process'
   | 'ai-advisor'
   | 'news'
@@ -27,7 +28,7 @@ export interface AccreditedCAB {
   scopeCategory: string;
   primaryStandard: string;
   country: string;
-  accreditationStatus: 'Active' | 'Under Review' | 'Suspended' | 'Applicant';
+  accreditationStatus: 'Active' | 'Under Review' | 'Suspended' | 'Applicant' | 'Revoked';
   initialAccreditationDate: string;
   expiryDate: string;
   technicalScopes: string[];
@@ -37,6 +38,24 @@ export interface AccreditedCAB {
   websiteUrl?: string;
   accreditingBody?: string;
   recognitionDetails?: string;
+  lastSurveillanceDate?: string;
+  nextAuditDate?: string;
+  signatoryOfficer?: string;
+  taxOrRegistrationId?: string;
+  securityChecksum?: string;
+}
+
+export interface VerificationRequestRecord {
+  id: string;
+  submittedAt: string;
+  organizationName: string;
+  certificateOrRegNumber: string;
+  standard: string;
+  requestorName: string;
+  requestorEmail: string;
+  purpose: string;
+  status: 'Pending Review' | 'Verified' | 'Unverified / Disputed';
+  notes?: string;
 }
 
 export interface GovernanceBody {

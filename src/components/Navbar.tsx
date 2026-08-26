@@ -34,6 +34,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
           <div className="flex items-center gap-4 text-[11px] font-semibold">
             <button
+              onClick={() => handleNavClick('verify')}
+              className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-bold bg-emerald-950/60 px-2.5 py-1 rounded border border-emerald-500/30"
+              title="Official IBSTAC Company Verification Portal"
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Verify Company Status</span>
+            </button>
+            <button
               onClick={() => handleNavClick('ai-advisor')}
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
             >
@@ -49,13 +57,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         {/* Brand Logo - First IBSTAC logo (retains full subtext) */}
         <div 
           onClick={() => handleNavClick('home')}
-          className="flex items-center gap-3 cursor-pointer group py-1"
+          className="flex items-center gap-3 cursor-pointer group py-1 shrink-0"
         >
           <IBSTACLogo showSubtitle={true} size="md" />
         </div>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-6 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+        {/* Desktop Navigation Links - Centered */}
+        <nav className="hidden lg:flex items-center justify-center flex-1 mx-6 gap-7 text-[11px] font-bold uppercase tracking-wider text-slate-600">
           <button
             onClick={() => handleNavClick('home')}
             className={`py-1 transition-colors ${
@@ -102,6 +110,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
 
           <button
+            onClick={() => handleNavClick('verify')}
+            className={`py-1 transition-colors flex items-center gap-1 font-bold ${
+              currentPage === 'verify' ? 'text-emerald-600 border-b-2 border-emerald-600' : 'text-emerald-700 hover:text-emerald-800'
+            }`}
+          >
+            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+            <span>Verify Status</span>
+          </button>
+
+          <button
             onClick={() => handleNavClick('process')}
             className={`py-1 transition-colors ${
               currentPage === 'process' ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-slate-900'
@@ -128,16 +146,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             Contact
           </button>
         </nav>
-
-        {/* Action Button */}
-        <div className="hidden lg:flex items-center gap-2">
-          <button
-            onClick={() => handleNavClick('contact')}
-            className="px-5 py-2.5 bg-slate-900 text-white text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-colors rounded-sm shadow-sm"
-          >
-            Contact Secretariat
-          </button>
-        </div>
 
         {/* Mobile Menu Toggle Button */}
         <button
@@ -182,6 +190,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             Directory of Accredited CABs
           </button>
           <button
+            onClick={() => handleNavClick('verify')}
+            className="block w-full text-left px-3 py-2 rounded text-emerald-400 font-bold hover:bg-slate-900 flex items-center justify-between"
+          >
+            <span className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <span>Verify Company Status</span>
+            </span>
+          </button>
+          <button
             onClick={() => handleNavClick('process')}
             className="block w-full text-left px-3 py-2 rounded text-slate-200 hover:bg-slate-900"
           >
@@ -206,10 +223,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             Contact Secretariat
           </button>
           
-          <div className="pt-2">
+          <div className="pt-2 space-y-2">
+            <button
+              onClick={() => handleNavClick('verify')}
+              className="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-center py-2.5 rounded shadow-xs text-xs uppercase tracking-wider"
+            >
+              <CheckCircle2 className="w-4 h-4" />
+              <span>Verify Company Status</span>
+            </button>
             <button
               onClick={() => handleNavClick('process')}
-              className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-center py-2.5 rounded shadow"
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-center py-2.5 rounded shadow text-xs uppercase tracking-wider"
             >
               Apply for Accreditation
             </button>

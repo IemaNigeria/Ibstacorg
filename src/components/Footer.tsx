@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavPage } from '../types';
-import { ShieldCheck, Award, Building2, Globe2, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Award, Building2, Globe2, ChevronRight, CheckCircle2, ExternalLink } from 'lucide-react';
 import { IBSTACLogo } from './IBSTACLogo';
 
 interface FooterProps {
@@ -25,7 +25,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs">
+          <div className="flex flex-wrap items-center gap-3 text-xs">
+            <button
+              onClick={() => onNavigate('verify')}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-sm shadow-xs transition-all flex items-center gap-2"
+              title="Official IBSTAC Company Verification Portal"
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Verify Company Status</span>
+              <ShieldCheck className="w-3.5 h-3.5 opacity-90" />
+            </button>
             <button
               onClick={() => onNavigate('process')}
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-sm shadow-xs transition-colors"
@@ -87,6 +96,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="space-y-2">
           <h5 className="font-extrabold text-white text-sm uppercase tracking-wider">Public Services</h5>
           <ul className="space-y-1.5 text-slate-400">
+            <li>
+              <button 
+                onClick={() => onNavigate('verify')} 
+                className="hover:text-emerald-300 transition-colors text-emerald-400 font-bold flex items-center gap-1.5"
+                title="Official IBSTAC Company Verification Portal"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Verify Company Status</span>
+              </button>
+            </li>
             <li>
               <button onClick={() => onNavigate('register')} className="hover:text-white transition-colors">
                 Public Directory of CABs

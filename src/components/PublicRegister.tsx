@@ -5,9 +5,10 @@ import { Search, Filter, ShieldCheck, CheckCircle2, AlertCircle, Calendar, MapPi
 
 interface PublicRegisterProps {
   initialSearchQuery?: string;
+  onNavigateVerify?: (query: string) => void;
 }
 
-export const PublicRegister: React.FC<PublicRegisterProps> = ({ initialSearchQuery = '' }) => {
+export const PublicRegister: React.FC<PublicRegisterProps> = ({ initialSearchQuery = '', onNavigateVerify }) => {
   const [searchTerm, setSearchTerm] = useState(initialSearchQuery);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedStatus, setSelectedStatus] = useState<string>('All');
@@ -49,6 +50,39 @@ export const PublicRegister: React.FC<PublicRegisterProps> = ({ initialSearchQue
           <p className="text-slate-600 text-sm sm:text-base">
             Search active and historic Conformity Assessment Bodies (CABs), verified certification scopes, and official accreditation numbers.
           </p>
+        </div>
+
+        {/* Company Verification Banner Card */}
+        <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white border border-slate-700 p-6 sm:p-7 rounded-sm shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-sm text-emerald-400 shrink-0">
+              <ShieldCheck className="w-7 h-7" />
+            </div>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-800/60">
+                  Official Verification Portal
+                </span>
+              </div>
+              <h3 className="text-base sm:text-lg font-extrabold text-white">
+                Check Company Accreditation & Certification Verification
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Are you a company, regulator, or conformity assessment body seeking to authenticate your IBSTAC accreditation status or verify an issued credential? Access our live verification portal.
+              </p>
+            </div>
+          </div>
+
+          <div className="shrink-0">
+            <button
+              onClick={() => onNavigateVerify ? onNavigateVerify(searchTerm) : undefined}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-widest rounded-sm shadow-md transition-all hover:scale-[1.02] border border-emerald-400/40"
+              title="Open Official IBSTAC Verification Portal"
+            >
+              <ShieldCheck className="w-4 h-4" />
+              <span>Verify Company Status</span>
+            </button>
+          </div>
         </div>
 
         {/* Filter & Search Bar */}
@@ -334,10 +368,23 @@ export const PublicRegister: React.FC<PublicRegisterProps> = ({ initialSearchQue
                 </ul>
               </div>
 
-              <div className="pt-4 border-t border-slate-200 flex items-center justify-end">
+              <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                {onNavigateVerify && (
+                  <button
+                    onClick={() => {
+                      const id = selectedCab.cabName;
+                      setSelectedCab(null);
+                      onNavigateVerify(id);
+                    }}
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider rounded-sm shadow-xs transition-colors"
+                  >
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>Verify on Official Ledger</span>
+                  </button>
+                )}
                 <button
                   onClick={() => setSelectedCab(null)}
-                  className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-sm"
+                  className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-sm ml-auto"
                 >
                   Close Record
                 </button>

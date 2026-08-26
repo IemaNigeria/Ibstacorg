@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavPage } from './types';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -6,6 +6,7 @@ import { WhoWeAre } from './components/WhoWeAre';
 import { ScopesExplorer } from './components/ScopesExplorer';
 import { GovernanceSection } from './components/GovernanceSection';
 import { PublicRegister } from './components/PublicRegister';
+import { VerificationPortal } from './components/VerificationPortal';
 import { ApplicationProcess } from './components/ApplicationProcess';
 import { AIComplianceAdvisor } from './components/AIComplianceAdvisor';
 import { NewsSection } from './components/NewsSection';
@@ -15,13 +16,66 @@ import { Footer } from './components/Footer';
 export default function App() {
   const [currentPage, setCurrentPage] = useState<NavPage>('home');
   const [registerSearchQuery, setRegisterSearchQuery] = useState('');
+  const [verificationInitialQuery, setVerificationInitialQuery] = useState('');
   const [selectedApplyScope, setSelectedApplyScope] = useState('management-systems');
+
+  // Handle URL pathname, hash or direct routing for /verify and other pages
+  useEffect(() => {
+    const handleUrlRoute = () => {
+      const pathname = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      const queryCert = params.get('cert') || params.get('certificate') || params.get('q') || params.get('query');
+
+      if (queryCert) {
+        setVerificationInitialQuery(queryCert);
+      }
+
+      if (pathname === '/verify' || pathname.startsWith('/verify') || hash === 'verify' || hash.startsWith('verify')) {
+        setCurrentPage('verify');
+      } else if (pathname === '/register' || hash === 'register') {
+        setCurrentPage('register');
+      } else if (pathname === '/scopes' || hash === 'scopes') {
+        setCurrentPage('scopes');
+      } else if (pathname === '/governance' || hash === 'governance') {
+        setCurrentPage('governance');
+      } else if (pathname === '/about' || hash === 'about') {
+        setCurrentPage('about');
+      } else if (pathname === '/process' || pathname === '/apply' || hash === 'process' || hash === 'apply') {
+        setCurrentPage('process');
+      } else if (pathname === '/ai-advisor' || hash === 'ai-advisor') {
+        setCurrentPage('ai-advisor');
+      } else if (pathname === '/contact' || hash === 'contact') {
+        setCurrentPage('contact');
+      }
+    };
+
+    handleUrlRoute();
+    window.addEventListener('hashchange', handleUrlRoute);
+    window.addEventListener('popstate', handleUrlRoute);
+    return () => {
+      window.removeEventListener('hashchange', handleUrlRoute);
+      window.removeEventListener('popstate', handleUrlRoute);
+    };
+  }, []);
+
+  // Update hash and URL state when page changes
+  const handleNavigate = (page: NavPage) => {
+    setCurrentPage(page);
+    window.location.hash = page === 'home' ? '' : `#${page}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Quick helper to jump straight to verify with a query term
+  const handleVerifyQuery = (query: string) => {
+    setVerificationInitialQuery(query);
+    handleNavigate('verify');
+  };
 
   // Helper when selecting a scope from ScopesExplorer to jump to Apply
   const handleSelectScopeForApply = (scopeId: string) => {
     setSelectedApplyScope(scopeId);
-    setCurrentPage('process');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleNavigate('process');
   };
 
   return (
@@ -30,7 +84,7 @@ export default function App() {
       {/* Top Main Navbar */}
       <Navbar 
         currentPage={currentPage}
-        onNavigate={setCurrentPage}
+        onNavigate={handleNavigate}
       />
 
       {/* Main Page Render based on currentPage */}
@@ -38,18 +92,23 @@ export default function App() {
         {currentPage === 'home' && (
           <>
             <Hero 
-              onNavigate={setCurrentPage}
-              onSearchRegistry={(q) => setRegisterSearchQuery(q)}
+              onNavigate={handleNavigate}
+              onSearchRegistry={(q) => {
+                setRegisterSearchQuery(q);
+                handleNavigate('register');
+              }}
+              onVerifyDirect={(q) => handleVerifyQuery(q)}
             />
             <WhoWeAre />
             <ScopesExplorer onSelectScopeForApply={handleSelectScopeForApply} />
             <PublicRegister 
               initialSearchQuery={registerSearchQuery}
+              onNavigateVerify={(q) => handleVerifyQuery(q)}
             />
             <GovernanceSection />
             <ApplicationProcess 
               initialScopeId={selectedApplyScope} 
-              onOpenAiAdvisor={() => setCurrentPage('ai-advisor')}
+              onOpenAiAdvisor={() => handleNavigate('ai-advisor')}
             />
             <NewsSection />
             <ContactSection />
@@ -79,6 +138,17 @@ export default function App() {
           <div className="animate-fadeIn">
             <PublicRegister 
               initialSearchQuery={registerSearchQuery}
+              onNavigateVerify={(q) => handleVerifyQuery(q)}
+            />
+          </div>
+        )}
+
+        {currentPage === 'verify' && (
+          <div className="animate-fadeIn">
+            <VerificationPortal 
+              initialQuery={verificationInitialQuery}
+              onNavigateContact={() => handleNavigate('contact')}
+              onNavigateScopes={() => handleNavigate('scopes')}
             />
           </div>
         )}
@@ -87,7 +157,7 @@ export default function App() {
           <div className="animate-fadeIn">
             <ApplicationProcess 
               initialScopeId={selectedApplyScope}
-              onOpenAiAdvisor={() => setCurrentPage('ai-advisor')}
+              onOpenAiAdvisor={() => handleNavigate('ai-advisor')}
             />
           </div>
         )}
@@ -113,7 +183,7 @@ export default function App() {
 
       {/* Footer */}
       <Footer 
-        onNavigate={setCurrentPage}
+        onNavigate={handleNavigate}
       />
 
     </div>

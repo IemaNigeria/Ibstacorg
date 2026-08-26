@@ -16,9 +16,9 @@ export const IBSTACLogo: React.FC<IBSTACLogoProps> = ({
   const isDark = variant === 'dark';
 
   const heightClasses = {
-    sm: 'h-9 sm:h-11',
-    md: 'h-12 sm:h-16',
-    lg: 'h-18 sm:h-24',
+    sm: 'h-10 sm:h-12',
+    md: 'h-14 sm:h-17',
+    lg: 'h-20 sm:h-26',
   };
 
   return (

@@ -17,7 +17,9 @@ import {
   Sparkles,
   Layers,
   FlaskConical,
-  Building2
+  Building2,
+  ExternalLink,
+  CheckCircle2
 } from 'lucide-react';
 
 import heroBg from '../assets/images/ibstac_hero_bg_1785245410504.jpg';
@@ -29,6 +31,7 @@ import { IBSTACLogo } from './IBSTACLogo';
 interface HeroProps {
   onNavigate: (page: NavPage) => void;
   onSearchRegistry: (query: string) => void;
+  onVerifyDirect?: (query: string) => void;
 }
 
 interface SlideData {
@@ -47,7 +50,7 @@ interface SlideData {
   isoStandard: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry }) => {
+export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry, onVerifyDirect }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -330,6 +333,23 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onSearchRegistry }) => {
                   </button>
                 </div>
               </form>
+
+              {/* Direct Company Verification Link Strip */}
+              <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-slate-50/80 p-3 rounded-sm border">
+                <div className="flex items-center gap-2 text-xs text-slate-700">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span><strong>Company Verification:</strong> Check if your organization or certificate is verified by IBSTAC.</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => onVerifyDirect ? onVerifyDirect(searchQuery) : onNavigate('verify')}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold uppercase tracking-wider rounded-xs shadow-2xs transition-colors shrink-0"
+                  title="Open Official IBSTAC Verification Portal"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Verify Status</span>
+                </button>
+              </div>
             </div>
           </div>
 
