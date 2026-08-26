@@ -21,6 +21,12 @@ export interface ScopeCategory {
   iconName: string;
 }
 
+export interface DetailedScopeItem {
+  discipline: string;
+  scopeOfTesting: string;
+  standardReference: string;
+}
+
 export interface AccreditedCAB {
   id: string;
   cabName: string;
@@ -35,12 +41,20 @@ export interface AccreditedCAB {
   certificateId: string;
   contactEmail: string;
   cityState: string;
+  address?: string;
+  issueDate?: string;
+  surveillance1Due?: string;
+  surveillance2Due?: string;
+  recertificationDue?: string;
+  validityStatement?: string;
+  organizationType?: string;
+  signatoryOfficer?: string;
+  detailedScopes?: DetailedScopeItem[];
   websiteUrl?: string;
   accreditingBody?: string;
   recognitionDetails?: string;
   lastSurveillanceDate?: string;
   nextAuditDate?: string;
-  signatoryOfficer?: string;
   taxOrRegistrationId?: string;
   securityChecksum?: string;
 }

@@ -261,6 +261,53 @@ export const GOVERNANCE_STRUCTURE: GovernanceBody[] = [
 
 export const SAMPLE_ACCREDITED_CABS: AccreditedCAB[] = [
   {
+    id: "quantum-steel-283944756",
+    cabName: "QUANTUM STEEL LIMITED",
+    organizationType: "Testing Laboratory",
+    registrationNumber: "283944756",
+    certificateId: "283944756",
+    scopeCategory: "Testing & Calibration Laboratories",
+    primaryStandard: "ISO/IEC 17025:2017",
+    country: "Nigeria",
+    cityState: "Oregun, Lagos",
+    address: "1st Floor, Pacific Holding House, 100 Kudirat Abiola Way, Oregun, Lagos, Nigeria.",
+    accreditationStatus: "Active",
+    initialAccreditationDate: "03 February 2025",
+    issueDate: "03 February 2025",
+    surveillance1Due: "03 February 2026",
+    surveillance2Due: "03 February 2027",
+    recertificationDue: "03 February 2028",
+    expiryDate: "03 February 2028",
+    validityStatement: "This certificate is valid subject to successful surveillance assessments.",
+    signatoryOfficer: "MJohn John, CERTIFICATION MANAGER",
+    accreditingBody: "IBSTAC (International Bureau for Standard Accreditation)",
+    recognitionDetails: "IBSTAC is a member of the International Laboratory Accreditation Alliance. Assessed and found to be competent to carry out laboratory testing in accordance with the requirements of ISO/IEC 17025:2017 General requirements for the competence of testing and calibration laboratories.",
+    detailedScopes: [
+      {
+        discipline: "MECHANICAL TESTING",
+        scopeOfTesting: "Tensile testing, Bend testing, Impact testing, Hardness testing and related mechanical tests on metallic materials and components.",
+        standardReference: "ISO 6892-1, ISO 15630-1"
+      },
+      {
+        discipline: "CHEMICAL TESTING",
+        scopeOfTesting: "Chemical composition analysis of metallic materials using optical emission spectrometry.",
+        standardReference: "ASTM E415"
+      },
+      {
+        discipline: "NDT TESTING",
+        scopeOfTesting: "Visual Testing (VT), Magnetic Particle Testing (MT), Liquid Penetrant Testing (PT), Radiographic Testing (RT) and Ultrasonic Testing (UT) on metallic materials and welds.",
+        standardReference: "IS 17640, ASTM E112"
+      }
+    ],
+    technicalScopes: [
+      "Mechanical Testing (Tensile, Bend, Impact, Hardness on metallic materials)",
+      "Chemical Testing (Optical emission spectrometry analysis)",
+      "NDT Testing (Visual VT, Magnetic MT, Penetrant PT, Radiographic RT, Ultrasonic UT)"
+    ],
+    contactEmail: "info@quantumsteel.com",
+    securityChecksum: "SHA256:283944756-ISO17025-IBSTAC-NIGERIA-ACCREDITED"
+  },
+  {
     id: "iema",
     cabName: "IEMA STANDARDS LIMITED",
     registrationNumber: "EGAC-CAB-IEMA-088",
