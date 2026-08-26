@@ -59,10 +59,13 @@ export default function App() {
     };
   }, []);
 
-  // Update hash and URL state when page changes
+  // Update URL state when page changes
   const handleNavigate = (page: NavPage) => {
     setCurrentPage(page);
-    window.location.hash = page === 'home' ? '' : `#${page}`;
+    const newPath = page === 'home' ? '/' : `/${page}`;
+    if (window.location.pathname !== newPath) {
+      window.history.pushState({}, '', newPath);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
